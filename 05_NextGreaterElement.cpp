@@ -33,7 +33,7 @@ public:
         for (int i = nums.size()-1; i >= 0; --i)
         {
             while(!stk.empty() && stk.top() <= nums[i]){stk.pop();}
-            if (!stk.empty()){stk.top();}
+            if (!stk.empty()){ans[i] = stk.top();}
             stk.push(nums[i]);
         }
         return ans;
