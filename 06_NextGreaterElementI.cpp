@@ -3,8 +3,27 @@
 #include <bits/stdc++.h>
 using namespace std ;
 
-
-
+class Solution1 {
+    // Using Stack to find the next greater element.
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> nextGreat;
+        stack<int> stk;
+        for (int i = nums2.size()-1; i >= 0; --i)
+        {
+            while(!stk.empty() && stk.top() <= nums2[i]) stk.pop();
+            if (!stk.empty())nextGreat[nums2[i]] = stk.top();
+            else nextGreat[nums2[i]] = -1;
+            stk.push(nums2[i]);
+        }
+        vector<int> ans(nums1.size());
+        for (int i = 0; i < nums1.size(); ++i)
+        {
+            ans[i] = nextGreat[nums1[i]];
+        }
+        return ans;
+    }
+};
 
 class Solution {
     // BruteForce: Find the index and then search for next greater element
